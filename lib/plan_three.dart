@@ -55,6 +55,7 @@ class PlanThreeState extends State<PlanThree> {
 
   Widget buildW(int index) {
     Widget w1 = CustomText(
+      padding: EdgeInsets.zero,
       title: '选择方案',
       width: 50,
     );
@@ -87,17 +88,13 @@ class PlanThreeState extends State<PlanThree> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
-            width: 10,
-          ),
           CustomText(
+            padding: EdgeInsets.only(left: 10),
             title: model.column0_key,
             width: 200,
           ),
-          SizedBox(
-            width: 10,
-          ),
           CustomText(
+            padding: EdgeInsets.only(left: 10),
             title: model.column1_key,
             width: 100,
           ),

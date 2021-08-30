@@ -69,6 +69,7 @@ class PlanOneState extends State<PlanOne> {
     Widget w1 = CustomText(
       title: '选择方案',
       width: 30,
+      padding: EdgeInsets.only(left: 5),
     );
     Widget w2 = SizedBox(
       child: Checkbox(
@@ -99,29 +100,20 @@ class PlanOneState extends State<PlanOne> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
-            width: 5,
-          ),
           CustomText(
+            padding: EdgeInsets.only(left: 5),
             title: model.column0_key,
             width: 220,
           ),
-          SizedBox(
-            width: 5,
-          ),
           CustomText(
+            padding: EdgeInsets.only(left: 5),
             title: model.column1_key,
             width: 80,
           ),
-          SizedBox(
-            width: 5,
-          ),
           CustomText(
+            padding: EdgeInsets.only(left: 5),
             title: model.column2_key,
             width: 50,
-          ),
-          SizedBox(
-            width: 5,
           ),
           w3,
         ],

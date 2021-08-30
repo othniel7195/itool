@@ -51,10 +51,12 @@ class StandardPlanState extends State<StandardPlan> {
     Widget w1 = CustomText(
       title: '选择方案',
       width: 20,
+      padding: EdgeInsets.only(left: 5),
     );
     Widget w11 = CustomText(
       title: '购买份数',
       width: 30,
+      padding: EdgeInsets.zero,
     );
     Widget w2 = SizedBox(
       child: Checkbox(
@@ -99,31 +101,23 @@ class StandardPlanState extends State<StandardPlan> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(
-            width: 5,
-          ),
           CustomText(
+            padding: EdgeInsets.only(left: 5),
             title: model.column0_key,
             width: 60,
           ),
-          SizedBox(
-            width: 5,
-          ),
           CustomText(
+            padding: EdgeInsets.only(left: 5),
             title: model.column1_key,
             width: 40,
           ),
-          SizedBox(
-            width: 5,
-          ),
           CustomText(
+            padding: EdgeInsets.only(left: 5),
             title: model.column2_key,
             width: 60,
           ),
-          SizedBox(
-            width: 5,
-          ),
           CustomText(
+            padding: EdgeInsets.only(left: 5),
             title: model.column3_key,
             width: 75,
           ),

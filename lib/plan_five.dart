@@ -48,6 +48,7 @@ class PlanFiveState extends State<PlanFive> {
     Widget w1 = CustomText(
       title: '选择方案',
       width: 50,
+      padding: EdgeInsets.zero,
     );
     Widget w2 = SizedBox(
       child: Checkbox(
@@ -78,17 +79,13 @@ class PlanFiveState extends State<PlanFive> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
-            width: 10,
-          ),
           CustomText(
+            padding: EdgeInsets.only(left: 10),
             title: model.column0_key,
             width: 200,
           ),
-          SizedBox(
-            width: 10,
-          ),
           CustomText(
+            padding: EdgeInsets.only(left: 10),
             title: model.column1_key,
             width: 100,
           ),

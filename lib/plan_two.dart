@@ -53,6 +53,7 @@ class PlanTwoState extends State<PlanTwo> {
 
   Widget buildW(int index) {
     Widget w1 = CustomText(
+      padding: EdgeInsets.zero,
       title: '选择方案',
       width: 50,
     );
@@ -85,24 +86,18 @@ class PlanTwoState extends State<PlanTwo> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
-            width: 5,
-          ),
           CustomText(
+            padding: EdgeInsets.only(left: 5),
             title: model.column0_key,
             width: 150,
           ),
-          SizedBox(
-            width: 5,
-          ),
           CustomText(
+            padding: EdgeInsets.only(left: 5),
             title: model.column1_key,
             width: 80,
           ),
-          SizedBox(
-            width: 5,
-          ),
           CustomText(
+            padding: EdgeInsets.only(left: 5),
             title: model.column2_key,
             width: 50,
           ),
