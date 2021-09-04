@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insurance_tool/custom_bottom.dart';
@@ -147,6 +149,10 @@ class _BuildC2State extends State<BuildC2> {
 
   @override
   Widget build(BuildContext context) {
+    double width = window.physicalSize.width;
+    if (width > 500) {
+      width = 500;
+    }
     return Scaffold(
       appBar: AppBar(
         title: CustomText(
@@ -154,87 +160,90 @@ class _BuildC2State extends State<BuildC2> {
           width: double.maxFinite,
         ),
       ),
-      body: ListView.builder(
-        itemBuilder: (BuildContext context, int index) {
-          if (index < 9) {
-            var data = _datas[index];
-            return ListTile(
-              title: CustomText(
-                title: data.title,
-                width: 100,
-              ),
-              trailing: PickerView(
-                data,
-                (value) {
-                  data.selectedIndex = value;
-                  setState(() {});
-                },
-              ),
-            );
-          } else if (index == 9) {
-            return ListTile(
-              title: CustomText(
-                title: "输入工程造价/元",
-                width: 80,
-              ),
-              trailing: Container(
-                padding: EdgeInsets.zero,
-                margin: EdgeInsets.zero,
-                width: 240,
-                child: TextField(
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    hintText: "输入工程款xxx 表示xxx元",
-                    prefixIcon: Icon(Icons.money),
-                  ),
-                  onChanged: (v) {
-                    if (v.isEmpty == false) {
-                      if (double.tryParse(v) != null) {
-                        b_price = double.parse(v);
-                      }
-                    }
+      body: Container(
+        width: width,
+        child: ListView.builder(
+          itemBuilder: (BuildContext context, int index) {
+            if (index < 9) {
+              var data = _datas[index];
+              return ListTile(
+                title: CustomText(
+                  title: data.title,
+                  width: 100,
+                ),
+                trailing: PickerView(
+                  data,
+                  (value) {
+                    data.selectedIndex = value;
+                    setState(() {});
                   },
                 ),
-              ),
-            );
-          } else if (index == 10) {
-            return ListTile(
-              title: CustomText(
-                title: "方案报价:",
-                width: 80,
-              ),
-              trailing: GestureDetector(
-                onTap: () {
-                  initialized = true;
-                  setState(() {});
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black38,
-                    border: Border.all(width: 1),
-                  ),
-                  height: 40,
+              );
+            } else if (index == 9) {
+              return ListTile(
+                title: CustomText(
+                  title: "输入工程造价/元",
+                  width: 80,
+                ),
+                trailing: Container(
+                  padding: EdgeInsets.zero,
+                  margin: EdgeInsets.zero,
                   width: 240,
-                  padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  child: CustomText(
-                    title: getBPrice(),
-                    width: 200,
-                    height: 40,
-                    padding: EdgeInsets.zero,
+                  child: TextField(
+                    autofocus: false,
+                    decoration: InputDecoration(
+                      hintText: "输入工程款xxx 表示xxx元",
+                      prefixIcon: Icon(Icons.money),
+                    ),
+                    onChanged: (v) {
+                      if (v.isEmpty == false) {
+                        if (double.tryParse(v) != null) {
+                          b_price = double.parse(v);
+                        }
+                      }
+                    },
                   ),
                 ),
-              ),
-            );
-          } else {
-            return ListTile(
-              title: CustomText(
-                title: getPlanDetail(),
-                width: double.maxFinite,
-              ),
-            );
-          }
-        },
-        itemCount: 12,
+              );
+            } else if (index == 10) {
+              return ListTile(
+                title: CustomText(
+                  title: "方案报价:",
+                  width: 80,
+                ),
+                trailing: GestureDetector(
+                  onTap: () {
+                    initialized = true;
+                    setState(() {});
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black38,
+                      border: Border.all(width: 1),
+                    ),
+                    height: 40,
+                    width: 240,
+                    padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                    child: CustomText(
+                      title: getBPrice(),
+                      width: 200,
+                      height: 40,
+                      padding: EdgeInsets.zero,
+                    ),
+                  ),
+                ),
+              );
+            } else {
+              return ListTile(
+                title: CustomText(
+                  title: getPlanDetail(),
+                  width: double.maxFinite,
+                ),
+              );
+            }
+          },
+          itemCount: 12,
+        ),
       ),
     );
   }
