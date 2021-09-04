@@ -73,191 +73,193 @@ class _BuildC1State extends State<BuildC1> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Center(
-        child: Column(
-          children: [
-            CustomText(
-              padding: EdgeInsets.only(top: 10),
-              title: '标准费率方案:',
-              width: double.infinity,
-              height: 30,
-            ),
-            SizedBox(
-              child: StandardPlan(
-                callback: (value) {
-                  _standardModel = value;
-                },
-              ),
-              width: double.infinity,
-              height: 250,
-            ),
-            CustomText(
-              padding: EdgeInsets.only(top: 0),
-              title: '工程类型费率系数:',
-              width: double.infinity,
-              height: 20,
-            ),
-            SizedBox(
-              child: PlanOne(
-                (value) {
-                  _planOneModel = value;
-                },
-              ),
-              height: 500,
-              width: double.infinity,
-            ),
-            CustomText(
-              padding: EdgeInsets.only(top: 10),
-              title: '工程造价调整系数及保单赔偿限额:',
-              width: double.infinity,
-              height: 30,
-            ),
-            SizedBox(
-              child: PlanTwo(
-                (v) {
-                  _planTwoModel = v;
-                },
-              ),
-              height: 350,
-              width: double.infinity,
-            ),
-            CustomText(
-              padding: EdgeInsets.only(top: 10),
-              title: '工程期限系数:',
-              width: double.infinity,
-              height: 30,
-            ),
-            SizedBox(
-              child: PlanThree(
-                (v) {
-                  _planThreeModel = v;
-                },
-              ),
-              height: 390,
-              width: double.infinity,
-            ),
-            CustomText(
-              padding: EdgeInsets.only(top: 10),
-              title: '承包方（被保险人）施工资质系数:',
-              width: double.infinity,
-              height: 30,
-            ),
-            SizedBox(
-              child: PlanFour(
-                (v) {
-                  _planFourModel = v;
-                },
-              ),
-              height: 280,
-              width: double.infinity,
-            ),
-            CustomText(
-              padding: EdgeInsets.only(top: 0),
-              title: '免安监证明条件系数:',
-              width: double.infinity,
-              height: 20,
-            ),
-            SizedBox(
-              child: PlanFive(
-                (v) {
-                  _planFiveModel = v;
-                },
-              ),
-              height: 230,
-              width: double.infinity,
-            ),
-            CustomText(
-              padding: EdgeInsets.only(top: 0),
-              title: '残疾标准系数:',
-              width: double.infinity,
-              height: 20,
-            ),
-            SizedBox(
-              child: PlanSix(
-                (v) {
-                  _planSixModel = v;
-                },
-              ),
-              height: 440,
-              width: double.infinity,
-            ),
-            CustomText(
-              padding: EdgeInsets.only(top: 10),
-              title: '方案说明:',
-              width: double.infinity,
-              height: 30,
-            ),
-            CustomText(
-              padding: EdgeInsets.zero,
-              title: '1、本方案总费率下浮不得超过20%',
-              width: double.infinity,
-              height: 20,
-            ),
-            CustomText(
-              padding: EdgeInsets.zero,
-              title: '2、云贵川等地不建议做，一单一议',
-              width: double.infinity,
-              height: 20,
-            ),
-            Container(
-              height: 40,
-              padding: EdgeInsets.only(top: 10),
-              child: TextField(
-                autofocus: false,
-                decoration: InputDecoration(
-                  hintText: "输入工程款xxx 表示xxx元",
-                  prefixIcon: Icon(Icons.money),
+    return Scaffold(
+      appBar: AppBar(
+        title: CustomText(
+          title: '建工意外标准费率方案',
+          width: double.infinity,
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                child: StandardPlan(
+                  callback: (value) {
+                    _standardModel = value;
+                  },
                 ),
-                onChanged: (v) {
-                  if (v.isEmpty == false) {
-                    if (double.tryParse(v) != null) {
-                      b_price = double.parse(v);
-                    }
-                  }
-                },
+                width: double.infinity,
+                height: 250,
               ),
-            ),
-            Container(
-              height: 40,
-              padding: EdgeInsets.only(top: 10),
-              child: Row(
-                children: [
-                  CustomText(
-                    padding: EdgeInsets.only(left: 10),
-                    title: "方案报价:",
-                    width: 80,
+              CustomText(
+                padding: EdgeInsets.only(top: 0),
+                title: '工程类型费率系数:',
+                width: double.infinity,
+                height: 20,
+              ),
+              SizedBox(
+                child: PlanOne(
+                  (value) {
+                    _planOneModel = value;
+                  },
+                ),
+                height: 500,
+                width: double.infinity,
+              ),
+              CustomText(
+                padding: EdgeInsets.only(top: 10),
+                title: '工程造价调整系数及保单赔偿限额:',
+                width: double.infinity,
+                height: 30,
+              ),
+              SizedBox(
+                child: PlanTwo(
+                  (v) {
+                    _planTwoModel = v;
+                  },
+                ),
+                height: 350,
+                width: double.infinity,
+              ),
+              CustomText(
+                padding: EdgeInsets.only(top: 10),
+                title: '工程期限系数:',
+                width: double.infinity,
+                height: 30,
+              ),
+              SizedBox(
+                child: PlanThree(
+                  (v) {
+                    _planThreeModel = v;
+                  },
+                ),
+                height: 390,
+                width: double.infinity,
+              ),
+              CustomText(
+                padding: EdgeInsets.only(top: 10),
+                title: '承包方（被保险人）施工资质系数:',
+                width: double.infinity,
+                height: 30,
+              ),
+              SizedBox(
+                child: PlanFour(
+                  (v) {
+                    _planFourModel = v;
+                  },
+                ),
+                height: 280,
+                width: double.infinity,
+              ),
+              CustomText(
+                padding: EdgeInsets.only(top: 0),
+                title: '免安监证明条件系数:',
+                width: double.infinity,
+                height: 20,
+              ),
+              SizedBox(
+                child: PlanFive(
+                  (v) {
+                    _planFiveModel = v;
+                  },
+                ),
+                height: 230,
+                width: double.infinity,
+              ),
+              CustomText(
+                padding: EdgeInsets.only(top: 0),
+                title: '残疾标准系数:',
+                width: double.infinity,
+                height: 20,
+              ),
+              SizedBox(
+                child: PlanSix(
+                  (v) {
+                    _planSixModel = v;
+                  },
+                ),
+                height: 440,
+                width: double.infinity,
+              ),
+              CustomText(
+                padding: EdgeInsets.only(top: 10),
+                title: '方案说明:',
+                width: double.infinity,
+                height: 30,
+              ),
+              CustomText(
+                padding: EdgeInsets.zero,
+                title: '1、本方案总费率下浮不得超过20%',
+                width: double.infinity,
+                height: 20,
+              ),
+              CustomText(
+                padding: EdgeInsets.zero,
+                title: '2、云贵川等地不建议做，一单一议',
+                width: double.infinity,
+                height: 20,
+              ),
+              Container(
+                height: 40,
+                padding: EdgeInsets.only(top: 10),
+                child: TextField(
+                  autofocus: false,
+                  decoration: InputDecoration(
+                    hintText: "输入工程款xxx 表示xxx元",
+                    prefixIcon: Icon(Icons.money),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      initialized = true;
-                      setState(() {});
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.black38,
-                        border: Border.all(width: 1),
-                      ),
-                      height: 40,
-                      width: 200,
-                      padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                      child: CustomText(
-                        title: getBPrice(),
-                        width: 200,
+                  onChanged: (v) {
+                    if (v.isEmpty == false) {
+                      if (double.tryParse(v) != null) {
+                        b_price = double.parse(v);
+                      }
+                    }
+                  },
+                ),
+              ),
+              Container(
+                height: 40,
+                padding: EdgeInsets.only(top: 10),
+                child: Row(
+                  children: [
+                    CustomText(
+                      padding: EdgeInsets.only(left: 10),
+                      title: "方案报价:",
+                      width: 80,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        initialized = true;
+                        setState(() {});
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.black38,
+                          border: Border.all(width: 1),
+                        ),
                         height: 40,
-                        padding: EdgeInsets.zero,
+                        width: 200,
+                        padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                        child: CustomText(
+                          title: getBPrice(),
+                          width: 200,
+                          height: 40,
+                          padding: EdgeInsets.zero,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            CustomText(
-              padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
-              title: getPlanDetail(),
-              width: double.infinity,
-            ),
-          ],
+              CustomText(
+                padding: EdgeInsets.fromLTRB(10, 20, 0, 0),
+                title: getPlanDetail(),
+                width: double.infinity,
+              ),
+            ],
+          ),
         ),
       ),
     );

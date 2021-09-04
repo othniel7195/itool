@@ -9,6 +9,8 @@ import 'package:insurance_tool/plan_three.dart';
 import 'package:insurance_tool/plan_two.dart';
 import 'package:insurance_tool/standard_plan.dart';
 
+import 'build_c2.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -46,10 +48,17 @@ class MyHomePage extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => BuildC1()),
-              );
+              if (index == 0) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BuildC1()),
+                );
+              } else if (index == 1) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BuildC2()),
+                );
+              } else if (index == 2) {}
             },
             child: ListTile(
               title: Text(listTitles[index]),
