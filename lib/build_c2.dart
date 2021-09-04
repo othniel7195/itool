@@ -68,8 +68,8 @@ class _BuildC2State extends State<BuildC2> {
 
     var d4 = BuildCDataCustom(3, "工程类型：", [d4i1, d4i2]);
 
-    var d5i1 = BuildCDataItem(0, 0.9, "一级/二级施工资质, 1");
-    var d5i2 = BuildCDataItem(1, 1, "三级施工资质, 保单总保费加费10%");
+    var d5i1 = BuildCDataItem(0, 1, "一级/二级施工资质, 1");
+    var d5i2 = BuildCDataItem(1, 1.1, "三级施工资质, 保单总保费加费10%");
 
     var d5 = BuildCDataCustom(4, "施工资质：", [d5i1, d5i2]);
 
@@ -90,7 +90,7 @@ class _BuildC2State extends State<BuildC2> {
     var d8 = BuildCDataCustom(7, "地区:", [d8i1]);
 
     var d9i1 = BuildCDataItem(0, 1.05, "工标十级5%, 1.05");
-    var d9i2 = BuildCDataItem(0, 1.1, "工标十级10%, 1.1");
+    var d9i2 = BuildCDataItem(1, 1.1, "工标十级10%, 1.1");
 
     var d9 = BuildCDataCustom(8, "伤残赔偿标准:", [d9i1, d9i2]);
 
@@ -172,8 +172,9 @@ class _BuildC2State extends State<BuildC2> {
                   width: 100,
                 ),
                 trailing: PickerView(
-                  data,
-                  (value) {
+                  data: data,
+                  itemExtent: 40,
+                  selectedCallback: (value) {
                     data.selectedIndex = value;
                     setState(() {});
                   },

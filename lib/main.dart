@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:insurance_tool/build_c1.dart';
+import 'package:insurance_tool/build_c3.dart';
 import 'package:insurance_tool/custom_text.dart';
-import 'package:insurance_tool/plan_five.dart';
-import 'package:insurance_tool/plan_four.dart';
-import 'package:insurance_tool/plan_one.dart';
-import 'package:insurance_tool/plan_six.dart';
-import 'package:insurance_tool/plan_three.dart';
-import 'package:insurance_tool/plan_two.dart';
-import 'package:insurance_tool/standard_plan.dart';
-
 import 'build_c2.dart';
+import 'build_nc1.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,7 +23,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
-  var listTitles = ['建工意外-标准费率', '建工意外险框架', '建工安责雇主框架'];
+  var listTitles = ['建工意外-标准费率(原始版本)', '建工意外-标准费率', '建工意外险框架', '建工安责雇主框架'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,16 +50,26 @@ class MyHomePage extends StatelessWidget {
               } else if (index == 1) {
                 Navigator.push(
                   context,
+                  MaterialPageRoute(builder: (context) => BuildNC1()),
+                );
+              } else if (index == 2) {
+                Navigator.push(
+                  context,
                   MaterialPageRoute(builder: (context) => BuildC2()),
                 );
-              } else if (index == 2) {}
+              } else if (index == 3) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BuildC3()),
+                );
+              }
             },
             child: ListTile(
               title: Text(listTitles[index]),
             ),
           );
         },
-        itemCount: 3,
+        itemCount: 4,
       ),
     );
   }

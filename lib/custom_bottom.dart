@@ -1,16 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'build_c2.dart';
 import 'custom_text.dart';
 
+bool PickerViewiSShow = false;
+
 class PickerView extends StatefulWidget {
   final void Function(int index) selectedCallback;
   final BuildCDataCustom data;
+  final double itemExtent;
   PickerView(
-    this.data,
-    this.selectedCallback,
-  );
+      {required this.data,
+      this.itemExtent = 40,
+      required this.selectedCallback});
   @override
   _PickerViewState createState() {
     return _PickerViewState();
@@ -19,6 +23,11 @@ class PickerView extends StatefulWidget {
 
 class _PickerViewState extends State<PickerView> {
   int _selectedIndexV = 0;
+
+  void dispose() {
+    PickerViewiSShow = false;
+    super.dispose();
+  }
 
   Widget pickerWidget() {
     var data = widget.data;
@@ -35,6 +44,7 @@ class _PickerViewState extends State<PickerView> {
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).pop();
+                    PickerViewiSShow = false;
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -55,6 +65,7 @@ class _PickerViewState extends State<PickerView> {
                   onTap: () {
                     widget.selectedCallback(_selectedIndexV);
                     Navigator.of(context).pop();
+                    PickerViewiSShow = false;
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -74,13 +85,14 @@ class _PickerViewState extends State<PickerView> {
             height: 300,
             child: Center(
               child: CupertinoPicker(
-                itemExtent: 40,
+                itemExtent: widget.itemExtent,
                 offAxisFraction: 0.0,
                 squeeze: 1.25,
                 diameterRatio: 1.07,
-                useMagnifier: true,
-                magnification: 1.3,
                 backgroundColor: Colors.black12,
+                selectionOverlay: CupertinoPickerDefaultSelectionOverlay(
+                  background: Colors.amber.withAlpha(88),
+                ),
                 onSelectedItemChanged: (value) {
                   _selectedIndexV = value;
                 },
@@ -109,6 +121,7 @@ class _PickerViewState extends State<PickerView> {
     showBottomSheet(
       context: context,
       builder: (BuildContext context) {
+        PickerViewiSShow = true;
         return pickerWidget();
       },
     );
@@ -131,7 +144,12 @@ class _PickerViewState extends State<PickerView> {
         width: 220,
       ),
       onPressed: () {
+        if (PickerViewiSShow) {
+          Navigator.of(context).pop();
+          PickerViewiSShow = false;
+        }
         didShow();
+        setState(() {});
       },
     );
   }
