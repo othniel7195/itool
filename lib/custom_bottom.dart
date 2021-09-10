@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 import 'build_c2.dart';
 import 'custom_text.dart';
@@ -117,14 +121,114 @@ class _PickerViewState extends State<PickerView> {
     );
   }
 
-  void didShow() {
-    showBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        PickerViewiSShow = true;
-        return pickerWidget();
-      },
+  Widget listWidget() {
+    var data = widget.data;
+    return Container(
+      height: 330,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                width: 80,
+                height: 30,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    PickerViewiSShow = false;
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(left: 10),
+                    color: Colors.amber,
+                    child: CustomText(
+                      title: "取消",
+                      width: 60,
+                      height: 30,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 80,
+                height: 30,
+                child: GestureDetector(
+                  onTap: () {
+                    widget.selectedCallback(_selectedIndexV);
+                    Navigator.of(context).pop();
+                    PickerViewiSShow = false;
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(left: 10),
+                    color: Colors.amber,
+                    child: CustomText(
+                      title: "完成",
+                      width: 60,
+                      height: 30,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Container(
+            height: 300,
+            child: Center(
+                child: ListView.separated(
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          _selectedIndexV = index;
+                          widget.selectedCallback(_selectedIndexV);
+                          Navigator.of(context).pop();
+                          PickerViewiSShow = false;
+                        },
+                        child: Container(
+                          color: (_selectedIndexV == index)
+                              ? Colors.grey
+                              : Colors.white,
+                          child: ListTile(
+                            selectedTileColor: Colors.amber,
+                            title: Text(
+                              data.items[index].itemTitle,
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: 'Noto'),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) =>
+                        Divider(
+                          color: Colors.grey,
+                        ),
+                    itemCount: data.items.length)),
+          ),
+        ],
+      ),
     );
+  }
+
+  void didShow() {
+    if ((UniversalPlatform.isIOS || UniversalPlatform.isAndroid) &&
+        UniversalPlatform.isWeb) {
+      showBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          PickerViewiSShow = true;
+          return pickerWidget();
+        },
+      );
+    } else {
+      showBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return listWidget();
+        },
+      );
+    }
   }
 
   @override
